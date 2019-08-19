@@ -8,15 +8,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Kräuter sind geil
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://www.drugcom.de/drogenlexikon/buchstabe-c/cannabis/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn Kräuter
         </a>
       </header>
     </div>
