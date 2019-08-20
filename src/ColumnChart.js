@@ -49,7 +49,7 @@ export default class ColumnChart extends Component {
 
   render() {
     return (
-      <div id={this.props.div} style={{width: "100%", height: "500px"}}/>
+        <div id={this.props.div} style={{width: "100%", height: "500px"}}/>
     );
   }
 }

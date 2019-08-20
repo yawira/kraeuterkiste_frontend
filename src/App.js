@@ -7,72 +7,54 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            moistureData: []
+            moistureData: [],
+            pumpData: [],
         }
     }
 
-
-    generateWaterData = () => {
-            return [{
-                country: "UK",
-                visits: 1122
-            },
-            {
-                country: "France",
-                visits: 1114
-            },
-            {
-                country: "India",
-                visits: 984
-            },
-            {
-                country: "Spain",
-                visits: 711
-            },
-            {
-                country: "Netherlands",
-                visits: 665
-            },
-            {
-                country: "Russia",
-                visits: 580
-            },
-            {
-                country: "South Korea",
-                visits: 443
-            },
-            {
-                country: "Canada",
-                visits: 441
-            }]
+    componentDidMount() {
+        this.fetchPumpData()
+        this.fetchMoistureData()
     }
 
-    fetchMoistureData = () => {
-        const data = []
+    fetchPumpData = () => {
         // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
-        fetch("http://localhost:6060/dataview/moisture",
-            {method: 'get', credentials: 'include',})
+        fetch("http://localhost:6060/dataview/pump", {credentials: 'include',})
             .then(response => response.json())
-            .then(moistureData => moistureData.moistureList.map(dataPoint => {
-                const percentage = dataPoint.moisturePercentage
-                const datetime =  dataPoint.moistureDateTime
-                data.push({dateTime: datetime.toString(), percentage: parseInt(percentage)})
-            }))
+            .then(pumpData => {
+                this.setState({
+                    pumpData: pumpData.pumpList,
+                })
+            })
+    }
 
-        this.setState({
-            moistureData: data,
-        })
+
+    fetchMoistureData = () => {
+        // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
+        fetch("http://localhost:6060/dataview/moisture", {credentials: 'include'})
+            .then(response => response.json())
+            .then(moistureData => {
+                this.setState({
+                    moistureData: moistureData.moistureList,
+                })
+            })
     }
 
     render() {
-        const moistureData = this.state.moistureData.slice()
+        const moistureData = this.state.moistureData.map(data => {
+            return {dateTime: data.moistureDateTime, percentage: parseInt(data.moisturePercentage)}
+        })
+        const pumpData = this.state.pumpData.map(data => {
+            return {dateTime: data.startWatering, duration: parseInt(data.stopWatering) - parseInt(data.stopWatering)}
+        })
 
-        const waterData = this.generateWaterData()
+        console.log(moistureData)
+
         return (
             <div className="App">
                 {/* everything passed inside the curly braces is passed to the "props" */}
-                <ColumnChart xAxisName={"dateTime"} yAxisName={"percentage"} div={"moistureChart"} data={moistureData}/>
-                <ColumnChart xAxisName={"country"} yAxisName={"visits"} div={"waterChart"} data={waterData}/>
+                <ColumnChart div={"moistureChart"} data={moistureData} xAxisName={"dateTime"} yAxisName={"percentage"}/>
+                <ColumnChart div={"pumpChart"} data={pumpData} xAxisName={"dateTime"} yAxisName={"duration"}/>
             </div>
         );
     }
