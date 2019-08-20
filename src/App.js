@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import './App.css';
 import MoistureChart from "./MoistureChart";
 import ColumnChart from './ColumnChart';
+import Button from 'react-bootstrap/Button'
 
 export default class App extends Component {
   
@@ -122,6 +123,7 @@ render(){
           {/* everything passed inside the curly braces is passed to the "props" */}
           <ColumnChart div={"moistureChart"} data={moistureData}/>
           <ColumnChart div={"waterChart"} data={waterData}/>
+          <Button variant="primary">Primary</Button>
       </div>
     );
   }

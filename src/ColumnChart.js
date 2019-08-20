@@ -2,6 +2,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated"
 import React, {Component} from 'react'
+import './charts.css'
 
 export default class ColumnChart extends Component {
 
@@ -67,10 +68,10 @@ export default class ColumnChart extends Component {
     }
   }
 
-  
+
   render() {
     return (
-      <div id={this.props.div} style={{ width: "100%", height: "500px" }}></div>
+      <div className="columnChart" id={this.props.div}></div>
     );
   }
 }
