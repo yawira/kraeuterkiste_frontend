@@ -148,7 +148,9 @@ export default class App extends Component {
         {/* we need 2 "divs", because amChart needs a div in the create method, where the charts are rendered */}
         <ColumnChart div={"exposureChart"} data={exposureData} />
         <ColumnChart div={"waterChart"} data={waterData} />
-        <Button variant="primary">Primary</Button>
+        <Button variant="success">Update moisture</Button>
+        <Button variant="info">Take current photo</Button>
+        <Button variant="primary">Pump water now</Button>
         <LineChart div={"lineChart"} abc={moistureData} />
       </div>
     );
