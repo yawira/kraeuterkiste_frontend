@@ -6,7 +6,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import LineChart from "./LineChart";
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Container, Row, Col } from 'react-grid-system';
+import Card from "react-bootstrap/Card"
+import "./charts.css"
+
 
 export default class App extends Component {
   generateWaterData = () => {
@@ -146,30 +149,32 @@ export default class App extends Component {
           </Navbar.Collapse>
         </Navbar>
 
-        {/* everything passed inside the curly braces is passed to the "props" */}
-        {/* we need 2 "divs", because amChart needs a div in the create method, where the charts are rendered */}
-        <Grid fluid>
-        <Row className="rowTop">
-          <Col xs={3} md={6}>
-            <ColumnChart div={"exposureChart"} data={exposureData} />
-            <Button variant="success">Update moisture</Button>
-          </Col>
-          <Col xs={3} md={6}>
-           <ColumnChart div={"waterChart"} data={waterData} />
-           <Button variant="info">Take current photo</Button>
-          </Col>
-        </Row>
-        <Row className="rowTop">
-          <Col xs={3} md={6}>
-            <Card border ="secondary" />
-            <Button variant="primary">Pump water now</Button>
-          </Col>
-          <Col xs={3} md={6}>
-           <LineChart div={"lineChart"} abc={moistureData} />
-          </Col>
-        </Row>
-      </Grid>
-        
+        {/* <div className="bootstrap-wrapper">
+          <Container className="app-container">
+            <Row className="justify-content-md-center" >
+              <Col md={{ span: 4 }}>{<ColumnChart div={"exposureChart"} data={exposureData} />}{<br></br>}{<Button variant="success">Update moisture</Button>}</Col>
+              <Col md={{ span: 4, offset: 2 }}>{<ColumnChart div={"waterChart"} data={waterData} />}{<br></br>}{<Button variant="info">Take current photo</Button>}</Col>
+            </Row>
+            <Row className="justify-content-md-center">
+              <Col md={{ span: 4 }}>{<Card border="secondary" />}{<br></br>}{<Button variant="primary">Pump water now</Button>}</Col>
+              <Col md={{ span: 4, offset: 2 }}>{<LineChart div={"lineChart"} abc={moistureData} />}</Col>
+            </Row>
+          </Container>
+        </div> */}
+
+        <Container className="cont">
+          <Row className="row">
+            <Col sm={6}>
+              <Col className="col" md={{ span: 4 }}>{<ColumnChart div={"exposureChart"} data={exposureData} />}{<br></br>}{<Button variant="success">Update moisture</Button>}</Col>
+              <Col className="col" md={{ span: 4 }}>{<Card border="secondary" />}{<br></br>}{<Button variant="primary">Pump water now</Button>}</Col>
+            </Col>
+            <Col sm={6}>
+              <Col className="col" md={{ span: 4, offset: 2 }}>{<ColumnChart div={"waterChart"} data={waterData} />}{<br></br>}{<Button variant="info">Take current photo</Button>}</Col>
+              <Col className="col" md={{ span: 4, offset: 2 }}>{<LineChart div={"lineChart"} abc={moistureData} />}</Col>
+            </Col>
+          </Row>
+        </Container>
+
       </div>
     );
   }
