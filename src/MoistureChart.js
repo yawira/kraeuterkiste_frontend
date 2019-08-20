@@ -4,7 +4,7 @@ import * as am4charts from "@amcharts/amcharts4/charts"
 import am4themes_animated from "@amcharts/amcharts4/themes/animated"
 import React from 'react'
 
-export default function MoistureChart(props) {
+export default class MoistureChart(props) extends Component {
 
     /* Chart code */
     // Themes
@@ -122,5 +122,4 @@ export default function MoistureChart(props) {
 
 
     return <div id="chartdiv"></div>
-
 }
