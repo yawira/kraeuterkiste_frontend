@@ -1,14 +1,17 @@
 /* Imports */
-import * as am4core from "amcharts"
-import * as am4charts from "amcharts/amcharts4/charts"
+import * as am4core from "@amcharts/amcharts4/core"
+import * as am4charts from "@amcharts/amcharts4/charts"
+import am4themes_animated from "@amcharts/amcharts4/themes/animated"
 import React from 'react'
 
 export default function MoistureChart(props) {
 
     /* Chart code */
-// Themes begin
-    //am4core.useTheme(am4themes_animated);
-// Themes end
+    // Themes
+    // begin
+    am4core.useTheme(am4themes_animated);
+    // Themes
+    // end
 
     let chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
@@ -118,6 +121,6 @@ export default function MoistureChart(props) {
     });
 
 
-    return <div id="chartdiv" width={"100%"} height={"400px"}>chart</div>
+    return <div id="chartdiv"></div>
 
 }
