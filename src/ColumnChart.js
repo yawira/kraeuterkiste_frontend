@@ -7,7 +7,8 @@ export default class ColumnChart extends Component {
 
   //componentDidMount is used to create the chart
   componentDidMount() {
-    let chart = am4core.create("chartdiv", am4charts.XYChart);
+
+    let chart = am4core.create(this.props.div, am4charts.XYChart);
 
       /* Chart code */
     // Themes begin
@@ -66,8 +67,7 @@ export default class ColumnChart extends Component {
     }
   }
 
-
-
+  
   render() {
     return (
       <div id={this.props.div} style={{ width: "100%", height: "500px" }}></div>
