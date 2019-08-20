@@ -3,8 +3,10 @@ import "./App.css";
 import ColumnChart from "./ColumnChart";
 import Button from "react-bootstrap/Button";
 import Navbar from 'react-bootstrap/Navbar';
+import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import LineChart from "./LineChart";
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 export default class App extends Component {
   generateWaterData = () => {
@@ -146,12 +148,28 @@ export default class App extends Component {
 
         {/* everything passed inside the curly braces is passed to the "props" */}
         {/* we need 2 "divs", because amChart needs a div in the create method, where the charts are rendered */}
-        <ColumnChart div={"exposureChart"} data={exposureData} />
-        <ColumnChart div={"waterChart"} data={waterData} />
-        <Button variant="success">Update moisture</Button>
-        <Button variant="info">Take current photo</Button>
-        <Button variant="primary">Pump water now</Button>
-        <LineChart div={"lineChart"} abc={moistureData} />
+        <Grid fluid>
+        <Row className="rowTop">
+          <Col xs={3} md={6}>
+            <ColumnChart div={"exposureChart"} data={exposureData} />
+            <Button variant="success">Update moisture</Button>
+          </Col>
+          <Col xs={3} md={6}>
+           <ColumnChart div={"waterChart"} data={waterData} />
+           <Button variant="info">Take current photo</Button>
+          </Col>
+        </Row>
+        <Row className="rowTop">
+          <Col xs={3} md={6}>
+            <Card border ="secondary" />
+            <Button variant="primary">Pump water now</Button>
+          </Col>
+          <Col xs={3} md={6}>
+           <LineChart div={"lineChart"} abc={moistureData} />
+          </Col>
+        </Row>
+      </Grid>
+        
       </div>
     );
   }
