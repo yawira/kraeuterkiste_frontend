@@ -11,10 +11,6 @@ export default class ColumnChart extends Component {
 
     let chart = am4core.create(this.props.div, am4charts.XYChart);
 
-    // let container = am4core.create("container", am4core.Container)
-    // // container.width = am4core.percent(100);
-    // container.height = am4core.percent(500);
-
     /* Chart code */
     // Themes begin
     am4core.useTheme(am4themes_animated);

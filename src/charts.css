@@ -1,6 +1,5 @@
-.app-container{
-    padding: 25px;
-}
+
+
 
 .amcharts-chart-div a{
     display:none !important;
@@ -14,3 +13,12 @@
 .container .row div {
     outline: solid 1px blue;
 }
+
+.cont{
+    padding: 70px;
+}
+
+.col{
+    padding: 60px;
+}
+
