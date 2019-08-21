@@ -32,7 +32,6 @@ export default class App extends Component {
             })
     }
 
-
     // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
     fetchMoistureData = () => {
         fetch("http://localhost:6060/dataview/moisture", {credentials: 'include',})
@@ -43,19 +42,6 @@ export default class App extends Component {
                 })
             })
     }
-
-    generateMoistureData = () => {
-        let data = [];
-        let value = 50;
-        for (let i = 0; i < 300; i++) {
-            let date = new Date();
-            date.setHours(0, 0, 0, 0);
-            date.setDate(i);
-            value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-            data.push({date: date, value: value});
-        }
-        return data;
-    };
 
     render() {
         const moistureData = this.state.moistureData.map(data => {
@@ -78,7 +64,7 @@ export default class App extends Component {
                         </div>
                         <div className="col col-md-6">
                             <Photo/>
-                        </ div>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col col-md-6">
