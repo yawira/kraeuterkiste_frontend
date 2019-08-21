@@ -5,7 +5,9 @@ import Button from "react-bootstrap/Button";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import LineChart from "./LineChart";
-import { Container, Row, Col } from 'react-grid-system';
+// import Col from 'react-grid-system';
+// import Row from 'react-grid-system';
+// import Container from 'react-grid-system';
 import Card from "react-bootstrap/Card"
 import "./charts.css"
 
@@ -134,6 +136,7 @@ export default class App extends Component {
     const exposureData = this.generateExposureData();
     const waterData = this.generateWaterData();
     const moistureData = this.generateMoistureData();
+
     return (
       <div className="App">
 
@@ -148,31 +151,27 @@ export default class App extends Component {
           </Navbar.Collapse>
         </Navbar>
 
-        {/* <div className="bootstrap-wrapper">
-          <Container className="app-container">
-            <Row className="justify-content-md-center" >
-              <Col md={{ span: 4 }}>{<ColumnChart div={"exposureChart"} data={exposureData} />}{<br></br>}{<Button variant="success">Update moisture</Button>}</Col>
-              <Col md={{ span: 4, offset: 2 }}>{<ColumnChart div={"waterChart"} data={waterData} />}{<br></br>}{<Button variant="info">Take current photo</Button>}</Col>
-            </Row>
-            <Row className="justify-content-md-center">
-              <Col md={{ span: 4 }}>{<Card border="secondary" />}{<br></br>}{<Button variant="primary">Pump water now</Button>}</Col>
-              <Col md={{ span: 4, offset: 2 }}>{<LineChart div={"lineChart"} abc={moistureData} />}</Col>
-            </Row>
-          </Container>
-        </div> */}
+        <div className="container">
 
-        <Container className="cont">
-          <Row className="row">
-            <Col sm={6}>
-              <Col className="col" md={{ span: 4 }}>{<ColumnChart div={"exposureChart"} data={exposureData} />}{<br></br>}{<Button variant="success">Update moisture</Button>}</Col>
-              <Col className="col" md={{ span: 4 }}>{<Card border="secondary" />}{<br></br>}{<Button variant="primary">Pump water now</Button>}</Col>
-            </Col>
-            <Col sm={6}>
-              <Col className="col" md={{ span: 4, offset: 2 }}>{<ColumnChart div={"waterChart"} data={waterData} />}{<br></br>}{<Button variant="info">Take current photo</Button>}</Col>
-              <Col className="col" md={{ span: 4, offset: 2 }}>{<LineChart div={"lineChart"} abc={moistureData} />}</Col>
-            </Col>
-          </Row>
-        </Container>
+          <div className="row">
+              <div className="col col-md-3">
+                  <ColumnChart div={"exposureChart"} data={exposureData} />
+              </ div>
+             <div className="col col-md-3">
+                <Card border="secondary" />
+              </ div>
+          </ div>
+
+          <div className="row">
+              <div className="col col-md-3">
+                  <ColumnChart div={"waterChart"} data={waterData} />
+              </ div>
+              <div className="col col-md-3">
+                  <LineChart div={"lineChart"} abc={moistureData} />
+              </ div>
+          </ div>
+
+        </div>
 
       </div>
     );
