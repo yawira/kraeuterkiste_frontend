@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Button from 'react-bootstrap/Button'
 import './App.css';
 import ColumnChart from './ColumnChart';
 import LineChart from "./LineChart";
@@ -73,25 +74,40 @@ export default class App extends Component {
                 <div className="container col-lg-12">
                     <div className="row">
                         <div className="col col-md-6">
-                            <ColumnChart div={"moistureChart"} data={moistureData} xAxisName={"dateTime"}
-                                         yAxisName={"percentage"}/>
+                            <LineChart div={"moistureChart"} data={moistureData} xAxisName={"dateTime"}
+                                       yAxisName={"percentage"}/>
+                            <Button id="moistureButton" onClick={() => {
+                                this.fetchMoistureData()
+                            }}>refresh</Button>
                         </div>
                         <div className="col col-md-6">
                             <Photo/>
+                            <Button id="photoButton" onClick={() => {
+                                this.fetchMoistureData()
+                            }}>picture</Button>
                         </ div>
                     </div>
                     <div className="row">
                         <div className="col col-md-6">
                             <ColumnChart div={"pumpChart"} data={pumpData} xAxisName={"dateTime"}
                                          yAxisName={"duration"}/>
+                            <Button id="pumpButton" onClick={() => {
+                                this.fetchMoistureData()
+                            }}>water</Button>
                         </div>
                         <div className="col col-md-6">
-                            <LineChart div={"lineChart"} data={moistureData} xAxisName={"dateTime"}
-                                       yAxisName={"percentage"}/>
+                            <ColumnChart div={"exposureChart"} data={moistureData} xAxisName={"dateTime"}
+                                         yAxisName={"percentage"}/>
+                            <Button id="exposureButton" onClick={() => {
+                                this.fetchMoistureData()
+                            }}>refresh</Button>
+
                         </div>
                     </div>
                 </div>
             </div>
         );
     }
+
+
 }
