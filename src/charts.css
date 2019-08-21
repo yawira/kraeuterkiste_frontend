@@ -1,24 +1,26 @@
-
-
-
 .amcharts-chart-div a{
     display:none !important;
 }
 
 .justify-content-md-center{
-    margin: 60px;
+    /*margin: 60px;*/
 }
 
 /* Hilflinien */
 .container .row div {
-    outline: solid 1px blue;
+    /*outline: solid 1px blue;*/
 }
 
 .cont{
-    padding: 70px;
+    /*padding: 70px;*/
 }
 
 .col{
-    padding: 60px;
+    /*padding: 60px;*/
+}
+
+.columnChart {
+    height: 500px;
+    width: 100%;
 }
 
