@@ -17,8 +17,8 @@ export default class App extends Component {
         this.fetchMoistureData()
     }
 
+    // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
     fetchPumpData = () => {
-        // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
         fetch("http://localhost:6060/dataview/pump", {credentials: 'include',})
             .then(response => response.json())
             .then(pumpData => {
@@ -29,9 +29,9 @@ export default class App extends Component {
     }
 
 
+    // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
     fetchMoistureData = () => {
-        // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
-        fetch("http://localhost:6060/dataview/moisture", {credentials: 'include'})
+        fetch("http://localhost:6060/dataview/moisture", {credentials: 'include',})
             .then(response => response.json())
             .then(moistureData => {
                 this.setState({
