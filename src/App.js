@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import "./App.css";
 import ColumnChart from "./ColumnChart";
 import Button from "react-bootstrap/Button";
-import Navbar from 'react-bootstrap/Navbar';
-import Card from 'react-bootstrap/Card';
-import Nav from 'react-bootstrap/Nav';
+import Navbar from "react-bootstrap/Navbar";
+import Card from "react-bootstrap/Card";
+import Nav from "react-bootstrap/Nav";
 import LineChart from "./LineChart";
-// import Col from 'react-grid-system';
-// import Row from 'react-grid-system';
-// import Container from 'react-grid-system';
-import Card from "react-bootstrap/Card"
-import "./charts.css"
-
+import "./charts.css";
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
+import ConfigurationView from "./ConfigurationView";
 
 export default class App extends Component {
   generateWaterData = () => {
@@ -140,40 +141,56 @@ export default class App extends Component {
 
     return (
       <div className="App">
+        {/* HashRouter tags are defining the area, in which we want to navigate between the different parts of our SPA */}
+        {/* <HashRouter>
+          <div>
+            <ul className="header">
+              <li><NavLink to="/App">Home</NavLink></li>
+              <li><NavLink to="/Configuration">Configuration</NavLink></li>
+            </ul>
+            <div className="content">
+              <Route exact path="/App" component={App}/>
+              <Route path="/Configuration" component={ConfigurationView}/>
+            </div>
+          </div>
+        </HashRouter> */}
 
+        <HashRouter>
         <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">Home</Navbar.Brand>
+          <Navbar.Brand>
+            <NavLink to="/Home">Home</NavLink>
+            <Route path="/App" component={App} />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#home">Configuration</Nav.Link>
+              <NavLink to="/Configuration">Configuration</NavLink>
+              <Route path="/Configuration" component={ConfigurationView} />
             </Nav>
             <Button variant="outline-danger">Sign Out</Button>
           </Navbar.Collapse>
         </Navbar>
+        </HashRouter>
 
         <div className="container">
+          <div className="row">
+            <div className="col col-md-3">
+              <ColumnChart div={"exposureChart"} data={exposureData} />
+            </div>
+            <div className="col col-md-3">
+              <Card border="secondary" />
+            </div>
+          </div>
 
           <div className="row">
-              <div className="col col-md-3">
-                  <ColumnChart div={"exposureChart"} data={exposureData} />
-              </ div>
-             <div className="col col-md-3">
-                <Card border="secondary" />
-              </ div>
-          </ div>
-
-          <div className="row">
-              <div className="col col-md-3">
-                  <ColumnChart div={"waterChart"} data={waterData} />
-              </ div>
-              <div className="col col-md-3">
-                  <LineChart div={"lineChart"} abc={moistureData} />
-              </ div>
-          </ div>
-
+            <div className="col col-md-3">
+              <ColumnChart div={"waterChart"} data={waterData} />
+            </div>
+            <div className="col col-md-3">
+              <LineChart div={"lineChart"} abc={moistureData} />
+            </div>
+          </div>
         </div>
-
       </div>
     );
   }
