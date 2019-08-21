@@ -3,11 +3,11 @@
     width: 100%;
 }
 
-.container{
+.container {
     padding: 50px;
 }
 
-.col{
+.col {
     padding: 20px;
 }
 
@@ -16,8 +16,13 @@
     width: 100%;
 }
 
-.plant{
+.plant {
     background-image: url(./plant.jpg);
     height: 400px;
     width: 350px;
+}
+
+.container {
+
+    margin-top:40px
 }
