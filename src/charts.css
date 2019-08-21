@@ -5,6 +5,7 @@
 
 .container {
     padding: 50px;
+    margin-top: 40px;
 }
 
 .col {
@@ -22,7 +23,3 @@
     width: 350px;
 }
 
-.container {
-
-    margin-top:40px
-}
