@@ -62,34 +62,64 @@ export default class App extends Component {
                         <div className="col col-md-6">
                             <LineChart div={"moistureChart"} data={moistureData} xAxisName={"dateTime"}
                                        yAxisName={"percentage"}/>
+
+                        </div>
+                        <div className="col col-md-6">
+                            <Photo/>
+
+                        </ div>
+                    </div>
+
+
+                    <div className="row">
+                        <div className="col col-md-6">
                             <Button id="moistureButton" onClick={() => {
                                 this.fetchMoistureData()
                             }}>refresh</Button>
                         </div>
                         <div className="col col-md-6">
-                            <Photo/>
                             <Button id="photoButton" onClick={() => {
                                 this.fetchMoistureData()
                             }}>picture</Button>
-                        </ div>
+                        </div>
                     </div>
+
+
                     <div className="row">
                         <div className="col col-md-6">
                             <ColumnChart div={"pumpChart"} data={pumpData} xAxisName={"dateTime"}
                                          yAxisName={"duration"}/>
-                            <Button id="pumpButton" onClick={() => {
-                                this.fetchMoistureData()
-                            }}>water</Button>
+
                         </div>
                         <div className="col col-md-6">
                             <ColumnChart div={"exposureChart"} data={moistureData} xAxisName={"dateTime"}
                                          yAxisName={"percentage"}/>
+
+
+                        </div>
+                    </div>
+
+
+                    <div className="row">
+                        <div className="col col-md-6">
+
+                            <Button id="pumpButton" onClick={() => {
+                                this.fetchMoistureData()
+                            }}>water</Button>
+                        </div>
+
+
+                        <div className="col col-md-6">
+
                             <Button id="exposureButton" onClick={() => {
                                 this.fetchMoistureData()
                             }}>refresh</Button>
 
                         </div>
+
                     </div>
+
+
                 </div>
             </div>
         );
