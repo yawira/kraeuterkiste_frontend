@@ -1,14 +1,31 @@
 import React, { Component } from "react";
+import Select from 'react-select';
+
+const options = [
+  { value: 'water', label: 'Watering Schedule' },
+  { value: 'exposure', label: 'Periods of exposure' },
+];
  
 export default class Configuration extends Component {
-  render() {
-    return (
-      <div className="container">
-        <h2>GOT QUESTIONS?</h2>
-        <p>The easiest thing to do is post on
-        our <a href="https://www.drugcom.de/drogenlexikon/buchstabe-c/cannabis/">forums</a>.
-        </p>
-      </div>
-    );
+
+    state = {
+      selectedOption: '',
+    };
+    handleChange = selectedOption => {
+      this.setState({ selectedOption });
+      console.log(`Option selected:`, selectedOption);
+    };
+    render() {
+   
+      return (
+        <div className="container">
+        <label>Please select an option: </label>
+        <Select
+         
+          onChange={this.handleChange}
+          options={options}
+        />
+        </div>
+      );
+    }
   }
-};
