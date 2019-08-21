@@ -9,6 +9,8 @@ export default class LineChart extends Component {
         let chart = am4core.create(this.props.div, am4charts.XYChart);
 
         am4core.useTheme(am4themes_animated);
+        // omit all line points if they are closer than X pixels to the last point drawn
+        am4core.options.minPolylineStep = 5;
 
         chart.data = this.props.data;
 
