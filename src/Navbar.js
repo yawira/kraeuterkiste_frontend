@@ -8,7 +8,7 @@ import Home from "./Home.js";
 export default function MyNavbar(props) {
   return (
     <HashRouter>
-      <Navbar bg="light" expand="lg">
+      <Navbar fixed="top" bg="light" expand="lg">
         <Navbar.Brand>
           <NavLink to="/home">Home </NavLink>
         </Navbar.Brand>
@@ -20,7 +20,7 @@ export default function MyNavbar(props) {
           <Button variant="outline-danger">Sign Out</Button>
         </Navbar.Collapse>
       </Navbar>
-      {/* Route path is the place, where the text from the component should be displayed, after clicking the NavLink */}
+      {/* Route path is the place, where the content of the component should be displayed, after clicking the NavLink */}
       <Route path="/home" component={Home} />
       <Route path="/config" component={Configuration} />
     </HashRouter>
