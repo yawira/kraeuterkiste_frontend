@@ -1,12 +1,19 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated"
-import React, {Component} from 'react'
+
+import React, { Component } from 'react'
+import './charts.css'
+
 
 export default class ColumnChart extends Component {
 
   componentDidMount() {
     let chart = am4core.create(this.props.div, am4charts.XYChart);
+
+
+    /* Chart code */
+    // Themes begin
 
     am4core.useTheme(am4themes_animated);
 
@@ -26,6 +33,21 @@ export default class ColumnChart extends Component {
     valueAxis.strictMinMax = true;
     valueAxis.renderer.minGridDistance = 30;
 
+    // axis break
+    let axisBreak = valueAxis.axisBreaks.create();
+    axisBreak.startValue = 2100;
+    axisBreak.endValue = 22900;
+    axisBreak.breakSize = 0.005;
+
+    // make break expand on hover
+    let hoverState = axisBreak.states.create("hover");
+    hoverState.properties.breakSize = 1;
+    hoverState.properties.opacity = 0.1;
+    hoverState.transitionDuration = 1500;
+
+    axisBreak.defaultState.transitionDuration = 1000;
+
+
     let series = chart.series.push(new am4charts.ColumnSeries());
     series.dataFields.categoryX = this.props.xAxisName;
     series.dataFields.valueY = this.props.yAxisName;
@@ -34,7 +56,7 @@ export default class ColumnChart extends Component {
     series.columns.template.strokeOpacity = 0;
 
     // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
-    series.columns.template.adapter.add("fill", function(fill, target) {
+    series.columns.template.adapter.add("fill", function (fill, target) {
       return chart.colors.getIndex(target.dataItem.index);
     });
 

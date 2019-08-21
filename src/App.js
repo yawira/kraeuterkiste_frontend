@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 import ColumnChart from './ColumnChart';
+import LineChart from "./LineChart";
+import "./charts.css"
+import Photo from "./Photo";
+import MyNavbar from "./Navbar";
 
 export default class App extends Component {
 
@@ -40,6 +44,19 @@ export default class App extends Component {
             })
     }
 
+    generateMoistureData = () => {
+        let data = [];
+        let value = 50;
+        for (let i = 0; i < 300; i++) {
+            let date = new Date();
+            date.setHours(0, 0, 0, 0);
+            date.setDate(i);
+            value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+            data.push({date: date, value: value});
+        }
+        return data;
+    };
+
     render() {
         const moistureData = this.state.moistureData.map(data => {
             return {dateTime: data.moistureDateTime, percentage: parseInt(data.moisturePercentage)}
@@ -48,15 +65,34 @@ export default class App extends Component {
             return {dateTime: data.startWatering, duration: parseInt(data.stopWatering) - parseInt(data.stopWatering)}
         })
 
-        console.log(moistureData)
-
         return (
             <div className="App">
-                {/* everything passed inside the curly braces is passed to the "props" */}
-                <ColumnChart div={"moistureChart"} data={moistureData} xAxisName={"dateTime"} yAxisName={"percentage"}/>
-                <ColumnChart div={"pumpChart"} data={pumpData} xAxisName={"dateTime"} yAxisName={"duration"}/>
+                <div>
+                    <MyNavbar/>
+                </div>
+                <div className="container col-lg-12">
+                    <div className="row">
+                        <div className="col col-md-6">
+                            <ColumnChart div={"moistureChart"} data={moistureData} xAxisName={"dateTime"}
+                                         yAxisName={"percentage"}/>
+                        </ div>
+                        <div className="col col-md-6">
+                            <Photo/>
+                        </ div>
+                    </div>
+                    <div className="row">
+                        <div className="col col-md-6">
+                            <ColumnChart div={"pumpChart"} data={pumpData} xAxisName={"dateTime"}
+                                         yAxisName={"duration"}/>
+                        </ div>
+                        <div className="col col-md-6">
+                            <LineChart div={"lineChart"} data={this.generateMoistureData()} xAxisName={"date"}
+                                       yAxisName={"value"}/>
+                        </ div>
+                    </div>
+                </div>
             </div>
         );
-    }
+    );
 }
-
+}

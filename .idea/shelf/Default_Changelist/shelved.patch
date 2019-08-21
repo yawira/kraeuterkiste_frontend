@@ -1,0 +1,8 @@
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.gitignore	(date 1566373997139)
++++ .idea/.gitignore	(date 1566373997139)
+@@ -0,0 +1,0 @@
