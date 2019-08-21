@@ -75,7 +75,7 @@ export default class App extends Component {
                         <div className="col col-md-6">
                             <ColumnChart div={"moistureChart"} data={moistureData} xAxisName={"dateTime"}
                                          yAxisName={"percentage"}/>
-                        </ div>
+                        </div>
                         <div className="col col-md-6">
                             <Photo/>
                         </ div>
@@ -84,15 +84,14 @@ export default class App extends Component {
                         <div className="col col-md-6">
                             <ColumnChart div={"pumpChart"} data={pumpData} xAxisName={"dateTime"}
                                          yAxisName={"duration"}/>
-                        </ div>
+                        </div>
                         <div className="col col-md-6">
-                            <LineChart div={"lineChart"} data={this.generateMoistureData()} xAxisName={"date"}
-                                       yAxisName={"value"}/>
-                        </ div>
+                            <LineChart div={"lineChart"} data={moistureData} xAxisName={"dateTime"}
+                                       yAxisName={"percentage"}/>
+                        </div>
                     </div>
                 </div>
             </div>
         );
-    );
-}
+    }
 }

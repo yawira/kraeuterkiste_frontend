@@ -6,7 +6,7 @@ import './charts.css'
 
 export default class LineChart extends Component {
     componentDidMount() {
-      let chart = am4core.create(this.props.div, am4charts.XYChart);
+        let chart = am4core.create(this.props.div, am4charts.XYChart);
 
         am4core.useTheme(am4themes_animated);
 
@@ -16,13 +16,13 @@ export default class LineChart extends Component {
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         dateAxis.renderer.minGridDistance = 60;
 
-        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        chart.yAxes.push(new am4charts.ValueAxis());
 
         // Create series
         let series = chart.series.push(new am4charts.LineSeries());
         series.dataFields.valueY = this.props.yAxisName;
         series.dataFields.dateX = this.props.xAxisName;
-        series.tooltipText = {this.props.xAxisName}
+        // series.tooltipText = {this.props.xAxisName}
 
         series.tooltip.pointerOrientation = "vertical";
 
@@ -32,20 +32,24 @@ export default class LineChart extends Component {
 
         //chart.scrollbarY = new am4core.Scrollbar();
         chart.scrollbarX = new am4core.Scrollbar();
-  
-      this.chart = chart;
+
+        this.chart = chart;
     }
-  
+
+    componentDidUpdate() {
+        this.chart.data = this.props.data
+    }
+
     componentWillUnmount() {
-      if (this.chart) {
-        this.chart.dispose();
-      }
+        if (this.chart) {
+            this.chart.dispose();
+        }
     }
 
     render() {
         return (
-          <div className="lineChart" id={this.props.div}></div>
+            <div className="lineChart" id={this.props.div}></div>
         );
-      }
     }
+    
 }

@@ -69,6 +69,10 @@ export default class ColumnChart extends Component {
     }
   }
 
+  componentDidUpdate() {
+    this.chart.data = this.props.data
+  }
+
   render() {
     return (
         <div id={this.props.div} style={{width: "100%", height: "500px"}}/>
