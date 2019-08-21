@@ -4,6 +4,7 @@ import ColumnChart from "./ColumnChart";
 import LineChart from "./LineChart";
 import "./charts.css";
 import Photo from "./Photo";
+import { Button } from "react-bootstrap";
 
 export default class Home extends Component {
   constructor(props) {
