@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import ColumnChart from "./ColumnChart";
-import Button from "react-bootstrap/Button";
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import LineChart from "./LineChart";
 // import Col from 'react-grid-system';
 // import Row from 'react-grid-system';
 // import Container from 'react-grid-system';
-import Card from "react-bootstrap/Card"
 import "./charts.css"
+import Photo from "./Photo";
+import MyNavbar from "./Navbar";
 
 
 export default class App extends Component {
@@ -139,40 +137,27 @@ export default class App extends Component {
 
     return (
       <div className="App">
-
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">Home</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="#home">Configuration</Nav.Link>
-            </Nav>
-            <Button variant="outline-danger">Sign Out</Button>
-          </Navbar.Collapse>
-        </Navbar>
-
-        <div className="container">
-
-          <div className="row">
-              <div className="col col-md-3">
-                  <ColumnChart div={"exposureChart"} data={exposureData} />
-              </ div>
-             <div className="col col-md-3">
-                <Card border="secondary" />
-              </ div>
-          </ div>
-
-          <div className="row">
-              <div className="col col-md-3">
-                  <ColumnChart div={"waterChart"} data={waterData} />
-              </ div>
-              <div className="col col-md-3">
-                  <LineChart div={"lineChart"} abc={moistureData} />
-              </ div>
-          </ div>
-
+        <div>
+          <MyNavbar />
         </div>
-
+        <div className="container col-lg-12">
+          <div className="row">
+            <div className="col col-md-6">
+              <ColumnChart div={"exposureChart"} data={exposureData} />
+            </ div>
+            <div className="col col-md-6">
+                <Photo />
+            </ div>
+          </div>
+          <div className="row">
+            <div className="col col-md-6">
+              <ColumnChart div={"waterChart"} data={waterData} />
+            </ div>
+            <div className="col col-md-6">
+              <LineChart div={"lineChart"} abc={moistureData} />
+            </ div>
+          </div>
+        </div>
       </div>
     );
   }
