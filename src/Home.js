@@ -3,7 +3,7 @@ import "./App.css";
 import ColumnChart from "./ColumnChart";
 import LineChart from "./LineChart";
 import "./charts.css";
-import Photo from "./Photo";
+// import Photo from "./Photo";
 import { Button } from "react-bootstrap";
 
 export default class Home extends Component {
@@ -12,7 +12,7 @@ export default class Home extends Component {
     this.state = {
       moistureData: [],
       pumpData: [],
-      photoData : ''
+      photoData : []
     };
   }
 
@@ -45,16 +45,23 @@ export default class Home extends Component {
   };
 
   showPhoto = () => {
-    fetch("http://localhost:8080/readImage", { credentials: "include" })
+    fetch("http://localhost:6060/readImage", { credentials: "include" })
+    // response - was wir von Seite bekommen => wandeln in json-Format um
     .then(response => response.json())
+    // photoData = response.json() als Parameter
     .then(photoData => {
-      var myObject = JSON.parse(photoData);
-      console.log(myObject);
+      this.setState({
+        photoData: photoData
+       
+      }) 
+      console.log(this.state.photoData)
 
-      this.setState({photoData: myObject});
-      console.log(this.state);
-    });
-};
+      
+
+      });
+   
+    };
+
 
   render() {
     const moistureData = this.state.moistureData.map(data => {
@@ -70,7 +77,10 @@ export default class Home extends Component {
         duration: parseInt(data.stopWatering) - parseInt(data.stopWatering)
       };
     });
-
+   
+    const img = "data:image/jpg;base64," + this.state.photoData.encodedImage
+    console.log(img)
+    
     return (
       <div className="App">
         <div className="container col-lg-12">
@@ -84,8 +94,7 @@ export default class Home extends Component {
               />
             </div>
             <div className="col col-md-6">
-              <Photo 
-              data = {photoData}/>
+              <img className="image" src={img} alt="error" style={{width: "inherit", height: "inherit"}}/>
             </div>
           </div>
 
@@ -103,9 +112,7 @@ export default class Home extends Component {
             <div className="col col-md-6">
               <Button
                 id="photoButton"
-                onClick={() => {
-                  this.showPhoto();
-                }}
+
               >
                 picture
               </Button>
