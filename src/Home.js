@@ -11,13 +11,15 @@ export default class Home extends Component {
     super(props);
     this.state = {
       moistureData: [],
-      pumpData: []
+      pumpData: [],
+      photoData : ''
     };
   }
 
   componentDidMount() {
     this.fetchPumpData();
     this.fetchMoistureData();
+    this.showPhoto();
   }
 
   // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
@@ -41,6 +43,18 @@ export default class Home extends Component {
         });
       });
   };
+
+  showPhoto = () => {
+    fetch("http://localhost:8080/readImage", { credentials: "include" })
+    .then(response => response.json())
+    .then(photoData => {
+      var myObject = JSON.parse(photoData);
+      console.log(myObject);
+
+      this.setState({photoData: myObject});
+      console.log(this.state);
+    });
+};
 
   render() {
     const moistureData = this.state.moistureData.map(data => {
@@ -70,7 +84,8 @@ export default class Home extends Component {
               />
             </div>
             <div className="col col-md-6">
-              <Photo />
+              <Photo 
+              data = {photoData}/>
             </div>
           </div>
 
@@ -89,7 +104,7 @@ export default class Home extends Component {
               <Button
                 id="photoButton"
                 onClick={() => {
-                  this.fetchMoistureData();
+                  this.showPhoto();
                 }}
               >
                 picture
