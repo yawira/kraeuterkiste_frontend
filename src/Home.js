@@ -3,7 +3,6 @@ import "./App.css";
 import ColumnChart from "./ColumnChart";
 import LineChart from "./LineChart";
 import "./charts.css";
-// import Photo from "./Photo";
 import { Button } from "react-bootstrap";
 
 export default class Home extends Component {
@@ -46,18 +45,14 @@ export default class Home extends Component {
 
   showPhoto = () => {
     fetch("http://localhost:6060/readImage", { credentials: "include" })
-    // response - was wir von Seite bekommen => wandeln in json-Format um
+    // response - was wir vom Server bekommen => Umwandeln in json-Format
     .then(response => response.json())
     // photoData = response.json() als Parameter
     .then(photoData => {
       this.setState({
         photoData: photoData
-       
       }) 
       console.log(this.state.photoData)
-
-      
-
       });
    
     };
