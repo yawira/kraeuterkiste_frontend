@@ -18,7 +18,7 @@ export default class Home extends Component {
   componentDidMount() {
     this.fetchPumpData();
     this.fetchMoistureData();
-    this.showPhoto();
+    //this.showPhoto();
   }
 
   // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
@@ -73,6 +73,7 @@ export default class Home extends Component {
       };
     });
    
+    // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
     const img = "data:image/jpg;base64," + this.state.photoData.encodedImage
     console.log(img)
     
@@ -107,7 +108,9 @@ export default class Home extends Component {
             <div className="col col-md-6">
               <Button
                 id="photoButton"
-
+                onClick ={ () =>{
+                  this.showPhoto();
+                }}
               >
                 picture
               </Button>
