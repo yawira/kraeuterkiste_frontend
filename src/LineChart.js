@@ -50,7 +50,7 @@ export default class LineChart extends Component {
 
     render() {
         return (
-            <div className="lineChart" id={this.props.div}></div>
+            <div className="lineChart" id={this.props.div}/>
         );
     }
     
