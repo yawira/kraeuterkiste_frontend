@@ -13,6 +13,7 @@ export default class Home extends Component {
       moistureData: [],
       pumpData: [],
       light: false,
+      photoData : []
     };
   }
 
@@ -50,6 +51,21 @@ export default class Home extends Component {
     })
   }
 
+  showPhoto = () => {
+    fetch("http://localhost:6060/readImage", { credentials: "include" })
+    // response - was wir vom Server bekommen => Umwandeln in json-Format
+    .then(response => response.json())
+    // photoData = response.json() als Parameter
+    .then(photoData => {
+      this.setState({
+        photoData: photoData
+      })
+      console.log(this.state.photoData)
+      });
+
+    };
+
+
   render() {
     const moistureData = this.state.moistureData.map(data => {
       // map-function generates an Array and the return statement maps the data
@@ -66,6 +82,11 @@ export default class Home extends Component {
     });
     const light = this.state.light
 
+
+    // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
+    const img = "data:image/jpg;base64," + this.state.photoData.encodedImage
+    console.log(img)
+
     return (
       <div className="App">
         <div className="container col-lg-12">
@@ -79,7 +100,7 @@ export default class Home extends Component {
               />
             </div>
             <div className="col col-md-6">
-              <Photo />
+              <img className="image" src={img} alt="error" style={{width: "inherit", height: "inherit"}}/>
             </div>
           </div>
 
@@ -97,8 +118,8 @@ export default class Home extends Component {
             <div className="col col-md-6">
               <Button
                 id="photoButton"
-                onClick={() => {
-                  this.fetchMoistureData();
+                onClick ={ () =>{
+                  this.showPhoto();
                 }}
               >
                 picture

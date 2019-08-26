@@ -5,6 +5,7 @@
 
 .container{
     padding: 50px;
+    margin-top: 40px;
 }
 
 .col{
@@ -16,8 +17,7 @@
     width: 100%;
 }
 
-.plant{
-    background-image: url(./plant.jpg);
+.image{
     height: 400px;
     width: 350px;
 }
