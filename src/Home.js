@@ -13,7 +13,6 @@ export default class Home extends Component {
             pumpData: [],
             photoData: [],
             ledOn: false,
-            // TODO pumpOn: false
             pumpOn: false
         };
     }
@@ -56,7 +55,6 @@ export default class Home extends Component {
     }
 
 
-    // TODO toggle Pump (fetch)
     togglePump = () => {
         fetch("http://localhost:6060/pump/toggle", {credentials: "include"})
             .then(result => result.json())
@@ -97,7 +95,6 @@ export default class Home extends Component {
         });
         const ledOn = this.state.ledOn
 
-        // TODO const pump
         const pumpOn = this.state.pumpOn
 
         // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
@@ -167,7 +164,6 @@ export default class Home extends Component {
                             <Button
                                 id="pumpButton"
                                 onClick={() => {
-                                    // TODO togglePump
                                     this.togglePump();
                                 }}
                             >
