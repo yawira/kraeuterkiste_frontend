@@ -13,6 +13,8 @@ export default class Home extends Component {
             pumpData: [],
             photoData: [],
             ledOn: false,
+            // TODO pumpOn: false
+            pumpOn: false
         };
     }
 
@@ -42,6 +44,7 @@ export default class Home extends Component {
             });
     };
 
+
     toggleLight = () => {
         fetch("http://localhost:6060/led/toggle", {credentials: "include"})
             .then(result => result.json())
@@ -51,6 +54,19 @@ export default class Home extends Component {
                 })
             })
     }
+
+
+    // TODO toggle Pump (fetch)
+    togglePump = () => {
+        fetch("http://localhost:6060/pump/toggle", {credentials: "include"})
+            .then(result => result.json())
+            .then(result => {
+                this.setState({
+                    pumpOn: result.on,
+                })
+            })
+    }
+
 
     showPhoto = () => {
         fetch("http://localhost:6060/readImage", {credentials: "include"})
@@ -81,6 +97,8 @@ export default class Home extends Component {
         });
         const ledOn = this.state.ledOn
 
+        // TODO const pump
+        const pumpOn = this.state.pumpOn
 
         // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
         const img = "data:image/jpg;base64," + this.state.photoData.encodedImage
@@ -149,10 +167,11 @@ export default class Home extends Component {
                             <Button
                                 id="pumpButton"
                                 onClick={() => {
-                                    this.fetchMoistureData();
+                                    // TODO togglePump
+                                    this.togglePump();
                                 }}
                             >
-                                water
+                                Watering is {pumpOn ? "on" : "off"}
                             </Button>
                         </div>
 
