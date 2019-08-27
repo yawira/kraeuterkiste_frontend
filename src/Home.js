@@ -101,8 +101,24 @@ export default class Home extends Component {
         const img = "data:image/jpg;base64," + this.state.photoData.encodedImage
 
         return (
+
+
             <div className="App">
+
+
                 <div className="container col-lg-12">
+
+
+                    <div className={"row"} style={{marginTop:"20px"}}>
+                        <div className="col-md-6">
+                            <h5>Feuchtigkeitsprofil</h5>
+                        </div>
+                        <div className="col-md-6">
+                            <h5>Bild der Kräuterkiste</h5>
+                        </div>
+                    </div>
+
+
                     <div className="row">
                         <div className="col col-md-6">
                             <LineChart
@@ -116,6 +132,7 @@ export default class Home extends Component {
                             <img className="image" src={img} alt="error" style={{width: "inherit", height: "inherit"}}/>
                         </div>
                     </div>
+
 
                     <div className="row">
                         <div className="col col-md-6">
@@ -140,7 +157,20 @@ export default class Home extends Component {
                         </div>
                     </div>
 
+
+                    <div className={"row"} style={{marginTop:"50px"}}>
+                        <div className="col-md-6">
+                            <h5>Bewässerungsprofil</h5>
+                        </div>
+                        <div className="col-md-6">
+                            <h5>Lichtprofil</h5>
+                        </div>
+                    </div>
+
+
                     <div className="row">
+
+
                         <div className="col col-md-6">
                             <ColumnChart
                                 div={"pumpChart"}
