@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import "./charts.css"
-import MyNavbar from "./Navbar";
+import "./charts/charts.css"
+import MyNavbar from "./Logic/Navbar";
 
 
 export default class App extends Component {
