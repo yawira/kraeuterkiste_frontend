@@ -5,7 +5,6 @@ import MyNavbar from "./Navbar";
 
 
 export default class App extends Component {
-
     render() {
         return (
             <div className="App">
@@ -15,6 +14,4 @@ export default class App extends Component {
             </div>         
         );
     }
-
-
 }

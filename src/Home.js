@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./App.css";
+import StackedColumnChart from "./StackedColumnChart";
 import ColumnChart from "./ColumnChart";
 import LineChart from "./LineChart";
 import "./charts.css";
@@ -12,14 +13,16 @@ export default class Home extends Component {
             moistureData: [],
             pumpData: [],
             photoData: [],
+            exposureData: [],
             ledOn: false,
-            pumpOn: false
+            pumpOn: false,
         };
     }
 
     componentDidMount() {
         this.fetchPumpData();
         this.fetchMoistureData();
+        this.fetchExposureData();
     }
 
     // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
@@ -43,17 +46,28 @@ export default class Home extends Component {
             });
     };
 
+    fetchExposureData = () => {
+        fetch("http://localhost:6060/led/data", {credentials: "include"})
+            .then(response => response.json())
+            .then(exposureData => {
+                this.setState({
+                    exposureData: exposureData.exposureList
+                })
+            })
+    }
 
     toggleLight = () => {
         fetch("http://localhost:6060/led/toggle", {credentials: "include"})
             .then(result => result.json())
             .then(result => {
+                if(!result.on) {
+                    this.fetchExposureData()
+                }
                 this.setState({
                     ledOn: result.on,
                 })
             })
     }
-
 
     togglePump = () => {
         fetch("http://localhost:6060/pump/toggle", {credentials: "include"})
@@ -64,7 +78,6 @@ export default class Home extends Component {
                 })
             })
     }
-
 
     showPhoto = () => {
         fetch("http://localhost:6060/readImage", {credentials: "include"})
@@ -77,7 +90,6 @@ export default class Home extends Component {
                 })
             })
     }
-
 
     render() {
         const moistureData = this.state.moistureData.map(data => {
@@ -93,21 +105,22 @@ export default class Home extends Component {
                 duration: parseInt(data.stopWatering) - parseInt(data.stopWatering)
             };
         });
+        const exposureData = this.state.exposureData.map(data => {
+            return {
+                dateTime: data.exposureDateTime,
+                duration: data.exposureInSecs,
+            }
+        })
         const ledOn = this.state.ledOn
-
         const pumpOn = this.state.pumpOn
 
         // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
         const img = "data:image/jpg;base64," + this.state.photoData.encodedImage
 
         return (
-
-
             <div className="App">
 
-
                 <div className="container col-lg-12">
-
 
                     <div className={"row"} style={{marginTop:"20px"}}>
                         <div className="col-md-6">
@@ -117,7 +130,6 @@ export default class Home extends Component {
                             <h5>Bild der Kräuterkiste</h5>
                         </div>
                     </div>
-
 
                     <div className="row">
                         <div className="col col-md-6">
@@ -132,7 +144,6 @@ export default class Home extends Component {
                             <img className="image" src={img} alt="error" style={{width: "inherit", height: "inherit"}}/>
                         </div>
                     </div>
-
 
                     <div className="row">
                         <div className="col col-md-6">
@@ -167,10 +178,7 @@ export default class Home extends Component {
                         </div>
                     </div>
 
-
                     <div className="row">
-
-
                         <div className="col col-md-6">
                             <ColumnChart
                                 div={"pumpChart"}
@@ -180,11 +188,11 @@ export default class Home extends Component {
                             />
                         </div>
                         <div className="col col-md-6">
-                            <ColumnChart
+                            <StackedColumnChart
                                 div={"exposureChart"}
-                                data={moistureData}
+                                data={exposureData}
                                 xAxisName={"dateTime"}
-                                yAxisName={"percentage"}
+                                yAxisName={"duration"}
                             />
                         </div>
                     </div>
