@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import "./charts/charts.css"
-import MyNavbar from "./Logic/Navbar";
+import MyNavbar from "./logic/Navbar";
 
 
 export default function App() {
