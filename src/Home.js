@@ -72,6 +72,9 @@ export default class Home extends Component {
         fetch("http://localhost:6060/pump/toggle", {credentials: "include"})
             .then(result => result.json())
             .then(result => {
+                if (!result.on) {
+                    this.fetchPumpData()
+                }
                 this.setState({
                     pumpOn: result.on,
                 })
