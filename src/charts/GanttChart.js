@@ -54,7 +54,6 @@ export default class GanttChart extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <div id={this.props.div} style={{width: "100%", height: "500px"}}/>
         );
