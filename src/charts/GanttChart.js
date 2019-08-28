@@ -27,10 +27,7 @@ export default class GanttChart extends Component {
         var dateAxis = chart.yAxes.push(new am4charts.DateAxis());
         dateAxis.dateFormatter.dateFormat = "HH:mm:ss";
         dateAxis.renderer.minGridDistance = 70;
-        dateAxis.baseInterval = {count: 30, timeUnit: "minute"};
-        dateAxis.max = new Date(2019, 0, 1, 24, 0, 0, 0).getTime();
-        dateAxis.min = new Date(2019, 0, 1, 0, 0, 0, 0).getTime();
-        dateAxis.strictMinMax = true;
+        dateAxis.baseInterval = {count: 1, timeUnit: "minute"};
         dateAxis.renderer.tooltipLocation = 0;
 
         var series1 = chart.series.push(new am4charts.ColumnSeries());
@@ -52,17 +49,12 @@ export default class GanttChart extends Component {
         this.chart = chart
     }
 
-    componentWillUnmount() {
-        if (this.chart) {
-            this.chart.dispose();
-        }
-    }
-
     componentDidUpdate() {
         this.chart.data = this.props.data
     }
 
     render() {
+        console.log(this.props.data)
         return (
             <div id={this.props.div} style={{width: "100%", height: "500px"}}/>
         );

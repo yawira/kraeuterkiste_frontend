@@ -42,12 +42,6 @@ export default class LineChart extends Component {
         this.chart.data = this.props.data
     }
 
-    componentWillUnmount() {
-        if (this.chart) {
-            this.chart.dispose();
-        }
-    }
-
     render() {
         return (
             // since we need to tell amCharts which html-element it can use to plot the graphics, we do it dynamically by "this.props.div" 
