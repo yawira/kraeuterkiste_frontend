@@ -25,7 +25,7 @@ export default class GanttChart extends Component {
         categoryAxis.renderer.inversed = true;
 
         var dateAxis = chart.yAxes.push(new am4charts.DateAxis());
-        dateAxis.dateFormatter.dateFormat = "YYYY-MM-DD HH:mm:ss";
+        dateAxis.dateFormatter.dateFormat = "HH:mm:ss";
         dateAxis.renderer.minGridDistance = 70;
         dateAxis.baseInterval = {count: 1, timeUnit: "seconds"};
         dateAxis.renderer.tooltipLocation = 0;
