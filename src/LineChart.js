@@ -42,12 +42,6 @@ export default class LineChart extends Component {
         this.chart.data = this.props.data
     }
 
-    componentWillUnmount() {
-        if (this.chart) {
-            this.chart.dispose();
-        }
-    }
-
     render() {
         return (
             <div className="lineChart" id={this.props.div}/>
