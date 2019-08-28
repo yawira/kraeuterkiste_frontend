@@ -50,6 +50,7 @@ export default class LineChart extends Component {
 
     render() {
         return (
+            // since we need to tell amCharts which html-element it can use to plot the graphics, we do it dynamically by "this.props.div" 
             <div className="lineChart" id={this.props.div}/>
         );
     }

@@ -4,7 +4,6 @@ import { HashRouter, Route, NavLink } from "react-router-dom";
 import Configuration from "./Configuration.js";
 import Home from "./Home.js";
 
-
 export default function MyNavbar(props) {
   return (
     <HashRouter>
@@ -22,7 +21,7 @@ export default function MyNavbar(props) {
       </Navbar>
       {/* Route path is the place, where the content of the component should be displayed, after clicking the NavLink */}
       {/* we need "exact path" to tell the router which the "default path" is */}
-      <Route exact path="/" component={Home}/>
+      <Route exact path="/" component={Home} />
       <Route path="/home" component={Home} />
       <Route path="/config" component={Configuration} />
     </HashRouter>
