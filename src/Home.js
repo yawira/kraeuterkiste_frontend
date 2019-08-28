@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import "./App.css";
-import StackedColumnChart from "./StackedColumnChart";
-import ColumnChart from "./ColumnChart";
+import GanttChart from "./GanttChart";
 import LineChart from "./LineChart";
 import "./charts.css";
 import {Button} from "react-bootstrap";
@@ -60,7 +59,7 @@ export default class Home extends Component {
         fetch("http://localhost:6060/led/toggle", {credentials: "include"})
             .then(result => result.json())
             .then(result => {
-                if(!result.on) {
+                if (!result.on) {
                     this.fetchExposureData()
                 }
                 this.setState({
@@ -91,27 +90,52 @@ export default class Home extends Component {
             })
     }
 
+    toDateStr = (date) => {
+        let month = ("0" + (date.getMonth() + 1)).slice(-2);
+        let day = ("0" + date.getDay()).slice(-2);
+        return [date.getFullYear(), month, day].join('-')
+    }
+
+    toTimeStr = (date) => {
+        let hour = ("0" + date.getHours()).slice(-2);
+        let minute = ("0" + date.getMinutes()).slice(-2);
+        let sec = ("0" + date.getSeconds()).slice(-2);
+        return [hour, minute, sec].join(':')
+    }
+
     render() {
         const moistureData = this.state.moistureData.map(data => {
             // map-function generates an Array and the return statement maps the data
             return {
-                dateTime: data.moistureDateTime,
+                dateTime: new Date(data.moistureDateTime),
                 percentage: parseInt(data.moisturePercentage)
             };
         });
+
         const pumpData = this.state.pumpData.map(data => {
+            const start = new Date(data.start)
+            const stop = new Date(data.stop)
+
             return {
-                dateTime: data.startWatering,
-                duration: parseInt(data.stopWatering) - parseInt(data.stopWatering)
-            };
+                date: this.toDateStr(start),
+                start: this.toDateStr(start) + ' ' + this.toTimeStr(start),
+                stop: this.toDateStr(stop) + ' ' + this.toTimeStr(stop),
+            }
         });
+
         const exposureData = this.state.exposureData.map(data => {
+            const start = new Date(data.start)
+            const stop = new Date(data.stop)
+
             return {
-                dateTime: data.exposureDateTime,
-                duration: data.exposureInSecs,
+                date: this.toDateStr(start),
+                start: this.toDateStr(start) + ' ' + this.toTimeStr(start),
+                stop: this.toDateStr(stop) + ' ' + this.toTimeStr(stop),
             }
         })
+
         const ledOn = this.state.ledOn
+
         const pumpOn = this.state.pumpOn
 
         // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
@@ -122,7 +146,7 @@ export default class Home extends Component {
 
                 <div className="container col-lg-12">
 
-                    <div className={"row"} style={{marginTop:"20px"}}>
+                    <div className={"row"} style={{marginTop: "20px"}}>
                         <div className="col-md-6">
                             <h5>Feuchtigkeitsprofil</h5>
                         </div>
@@ -169,7 +193,7 @@ export default class Home extends Component {
                     </div>
 
 
-                    <div className={"row"} style={{marginTop:"50px"}}>
+                    <div className={"row"} style={{marginTop: "50px"}}>
                         <div className="col-md-6">
                             <h5>Bewässerungsprofil</h5>
                         </div>
@@ -180,19 +204,21 @@ export default class Home extends Component {
 
                     <div className="row">
                         <div className="col col-md-6">
-                            <ColumnChart
+                            <GanttChart
                                 div={"pumpChart"}
                                 data={pumpData}
-                                xAxisName={"dateTime"}
-                                yAxisName={"duration"}
+                                xAxisName={"date"}
+                                yOpenDate={"start"}
+                                yCloseDate={"stop"}
                             />
                         </div>
                         <div className="col col-md-6">
-                            <StackedColumnChart
+                            <GanttChart
                                 div={"exposureChart"}
                                 data={exposureData}
-                                xAxisName={"dateTime"}
-                                yAxisName={"duration"}
+                                xAxisName={"date"}
+                                yOpenDate={"start"}
+                                yCloseDate={"stop"}
                             />
                         </div>
                     </div>
