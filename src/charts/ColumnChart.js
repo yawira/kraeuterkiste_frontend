@@ -49,12 +49,6 @@ export default class ColumnChart extends Component {
         this.chart = chart;
     }
 
-    componentWillUnmount() {
-        if (this.chart) {
-            this.chart.dispose();
-        }
-    }
-
     componentDidUpdate() {
         this.chart.data = this.props.data
     }

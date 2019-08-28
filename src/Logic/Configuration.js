@@ -9,11 +9,15 @@ const options = [
 ];
 
 export default class Configuration extends Component {
-  state = {
-    selectedOption: "",
-    showExposure: false,
-    showWater: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: "",
+      showExposure: false,
+      showWater: false,
+    };
+  }
+
   handleChange = selectedOption => {
     switch (selectedOption.value) {
       case "exposure":
@@ -31,17 +35,20 @@ export default class Configuration extends Component {
       default:
     }
     this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
   };
+
   render() {
+    const showWater = this.state.showWater
+    const showExposure = this.state.showExposure
+
     return (
       <div className="container">
         <div>
           <label>Please select an option: </label>
           <Select onChange={this.handleChange} options={options} />
         </div>
-        <WaterConfig show={this.state.showWater} />
-        <ExposureConfig show={this.state.showExposure} />
+        <WaterConfig show={showWater} />
+        <ExposureConfig show={showExposure} />
       </div>
     );
   }
