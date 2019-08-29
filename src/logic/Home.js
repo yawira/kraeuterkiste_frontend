@@ -59,11 +59,11 @@ export default class Home extends Component {
     fetch("http://localhost:6060/exposure/toggle", { credentials: "include" })
       .then(result => result.json())
       .then(result => {
-        if (!result.on) {
+        if (!result.active) {
           this.fetchExposureData();
         }
         this.setState({
-          ledOn: result.on
+          ledOn: result.active
         });
       });
   };
@@ -72,11 +72,11 @@ export default class Home extends Component {
     fetch("http://localhost:6060/pump/toggle", { credentials: "include" })
       .then(result => result.json())
       .then(result => {
-        if (!result.on) {
+        if (!result.active) {
           this.fetchPumpData();
         }
         this.setState({
-          pumpOn: result.on
+          pumpOn: result.active
         });
       });
   };
