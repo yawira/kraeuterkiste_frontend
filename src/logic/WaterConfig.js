@@ -10,10 +10,10 @@ export default function WaterConfig(props) {
             </p>
             <div className={"row"} style={{marginTop: "20px"}}>
                 <div className="col-md-6">
-                    <MyClock/>
+                    <MyCalender/>
                 </div>
                 <div className="col-md-6">
-                    <MyCalender/>
+                    <MyClock/>
                 </div>
             </div>
         </div>

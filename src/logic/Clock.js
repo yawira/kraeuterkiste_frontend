@@ -1,6 +1,6 @@
 import React from 'react';
 import TimeKeeper from 'react-timekeeper';
-import './clock.css'
+import './logic.css'
 
 export default class MyClock extends React.Component {
     constructor(props){

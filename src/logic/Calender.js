@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactLightCalendar from '@lls/react-light-calendar'
-import '@lls/react-light-calendar/dist/index.css'
+import './calender.css'
 
 // https://reactjsexample.com/a-lightweight-calendar-for-react/
 export default class MyCalendar extends Component {
@@ -20,10 +20,7 @@ export default class MyCalendar extends Component {
     const { startDate, endDate } = this.state
 
     return (
-        <div className="calender">
-            
             <ReactLightCalendar startDate={startDate} endDate={endDate} onChange={this.onChange} range />
-        </div>
     )
   }
 }
