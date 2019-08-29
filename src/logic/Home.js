@@ -95,7 +95,7 @@ export default class Home extends Component {
 
   toDateStr = date => {
     let month = ("0" + (date.getMonth() + 1)).slice(-2);
-    let day = ("0" + date.getDay()).slice(-2);
+    let day = ("0" + date.getDate()).slice(-2);
     return [date.getFullYear(), month, day].join("-");
   };
 
