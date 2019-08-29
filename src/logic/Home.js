@@ -19,9 +19,9 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    this.fetchPumpData();
     this.fetchMoistureData();
     this.fetchExposureData();
+    this.fetchPumpData();
   }
 
   // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
@@ -30,7 +30,7 @@ export default class Home extends Component {
       .then(response => response.json())
       .then(pumpData => {
         this.setState({
-          pumpData: pumpData.pumpList
+          pumpData: pumpData,
         });
       });
   };
@@ -40,7 +40,7 @@ export default class Home extends Component {
       .then(response => response.json())
       .then(moistureData => {
         this.setState({
-          moistureData: moistureData.moistureList
+          moistureData: moistureData.moistureList,
         });
       });
   };
@@ -50,7 +50,7 @@ export default class Home extends Component {
       .then(response => response.json())
       .then(exposureData => {
         this.setState({
-          exposureData: exposureData.exposureList
+          exposureData: exposureData,
         });
       });
   };
