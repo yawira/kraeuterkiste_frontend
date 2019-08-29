@@ -149,10 +149,10 @@ export default class Home extends Component {
         <div className="container col-lg-12">
           <div className={"row"} style={{ marginTop: "20px" }}>
             <div className="col-md-6">
-              <h5>Moisture profile</h5>
+              <h5>Moisture Data</h5>
             </div>
             <div className="col-md-6">
-              <h5>Picture of Kräuterkiste</h5>
+              <h5>Photo of Kräuterkiste</h5>
             </div>
           </div>
 
@@ -169,7 +169,7 @@ export default class Home extends Component {
               <img
                 className="image"
                 src={img}
-                alt="error"
+                alt=""
                 style={{ width: "inherit", height: "inherit" }}
               />
             </div>
@@ -183,7 +183,7 @@ export default class Home extends Component {
                   this.fetchMoistureData();
                 }}
               >
-                refresh{" "}
+                Refresh Data{" "}
               </Button>
             </div>
             <div className="col col-md-6">
@@ -193,17 +193,17 @@ export default class Home extends Component {
                   this.takePhoto();
                 }}
               >
-                picture{" "}
+                Take a Photo{" "}
               </Button>
             </div>
           </div>
 
           <div className={"row"} style={{ marginTop: "50px" }}>
             <div className="col-md-6">
-              <h5>Water statistics</h5>
+              <h5>Watering Data</h5>
             </div>
             <div className="col-md-6">
-              <h5>Exposure data</h5>
+              <h5>Exposure Data</h5>
             </div>
           </div>
 
@@ -236,7 +236,7 @@ export default class Home extends Component {
                   this.togglePump();
                 }}
               >
-                Watering is {pumpOn ? "on" : "off"}
+                Watering: {pumpOn ? "on" : "off"}
               </Button>
             </div>
 
@@ -247,7 +247,7 @@ export default class Home extends Component {
                   this.toggleExposure();
                 }}
               >
-                Light is {ledOn ? "on" : "off"}
+                Light: {ledOn ? "on" : "off"}
               </Button>
             </div>
           </div>
