@@ -3,7 +3,9 @@ import "../App.css";
 import LineChart from "../charts/LineChart";
 import "../charts/charts.css";
 import { Button } from "react-bootstrap";
-import GanttChart from "../charts/GanttChart"
+import GanttChart from "../charts/GanttChart";
+import Photo from "./Photo"
+import plant from "../pictures/plant.jpg"
 
 export default class Home extends Component {
   constructor(props) {
@@ -11,7 +13,7 @@ export default class Home extends Component {
     this.state = {
       moistureData: [],
       pumpData: [],
-      photoData: [],
+      photoData: plant,
       exposureData: [],
       ledOn: false,
       pumpOn: false
@@ -88,7 +90,8 @@ export default class Home extends Component {
       // photoData = response.json() als Parameter
       .then(photoData => {
         this.setState({
-          photoData: photoData
+              // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
+          photoData: "data:image/jpg;base64," + photoData.encodedImage
         });
       });
   };
@@ -141,8 +144,7 @@ export default class Home extends Component {
 
     const pumpOn = this.state.pumpOn;
 
-    // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
-    const img = "data:image/jpg;base64," + this.state.photoData.encodedImage;
+    const photoData = this.state.photoData;
 
     return (
       <div className="App">
@@ -165,13 +167,9 @@ export default class Home extends Component {
                 yAxisName={"percentage"}
               />
             </div>
+
             <div className="col col-md-6">
-              <img
-                className="image"
-                src={img}
-                alt=""
-                style={{ width: "inherit", height: "inherit" }}
-              />
+              <Photo data={photoData}/>
             </div>
           </div>
 
