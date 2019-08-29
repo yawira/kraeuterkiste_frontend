@@ -20,12 +20,15 @@ export default class ColumnChart extends Component {
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.data = this.props.data;
+        chart.dateFormatter.inputDateFormat = "YYYY-MM-DD HH:mm:ss";
+        
 
-        let categoryAxis = chart.xAxes.push(new am4charts.DateAxis());
+        let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         //categoryAxis.renderer.grid.template.location = 0;
-        categoryAxis.dataFields.category = "category"
-        categoryAxis.renderer.minGridDistance = 40;
-        categoryAxis.fontSize = 11;
+        dateAxis.dataFields.date = "date"
+        dateAxis.renderer.minGridDistance = 40;
+        dateAxis.fontSize = 11;
+        dateAxis.baseInterval = {count: 1, timeUnit: "minute"};
 
         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
         valueAxis.min = 0;
@@ -41,6 +44,8 @@ export default class ColumnChart extends Component {
         series.columns.template.tooltipY = 0;
         series.columns.template.strokeOpacity = 0;
 
+        chart.scrollbarX = new am4core.Scrollbar()
+
         // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
         series.columns.template.adapter.add("fill", function (fill, target) {
             return chart.colors.getIndex(target.dataItem.index);
@@ -54,6 +59,7 @@ export default class ColumnChart extends Component {
     }
 
     render() {
+        console.log(this.props.data)
         return (
             <div id={this.props.div} style={{width: "100%", height: "500px"}}/>
         );

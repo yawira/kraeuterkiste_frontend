@@ -4,6 +4,7 @@ import LineChart from "../charts/LineChart";
 import "../charts/charts.css";
 import { Button } from "react-bootstrap";
 import GanttChart from "../charts/GanttChart"
+import ColumnChart from "../charts/ColumnChart"
 
 export default class Home extends Component {
   constructor(props) {
@@ -59,11 +60,11 @@ export default class Home extends Component {
     fetch("http://localhost:6060/exposure/toggle", { credentials: "include" })
       .then(result => result.json())
       .then(result => {
-        if (!result.on) {
+        if (!result.active) {
           this.fetchExposureData();
         }
         this.setState({
-          ledOn: result.on
+          ledOn: result.active
         });
       });
   };
@@ -72,11 +73,11 @@ export default class Home extends Component {
     fetch("http://localhost:6060/pump/toggle", { credentials: "include" })
       .then(result => result.json())
       .then(result => {
-        if (!result.on) {
+        if (!result.active) {
           this.fetchPumpData();
         }
         this.setState({
-          pumpOn: result.on
+          pumpOn: result.active
         });
       });
   };
@@ -117,12 +118,12 @@ export default class Home extends Component {
 
     const pumpData = this.state.pumpData.map(data => {
       const start = new Date(data.start);
-      const stop = new Date(data.stop);
+      const duration = data.duration;
 
       return {
-        date: this.toDateStr(start),
-        start: this.toDateStr(start) + " " + this.toTimeStr(start),
-        stop: this.toDateStr(stop) + " " + this.toTimeStr(stop)
+        date: start,
+        duration: duration,
+        
       };
     });
 
@@ -209,12 +210,12 @@ export default class Home extends Component {
 
           <div className="row">
             <div className="col col-md-6">
-              <GanttChart
+              <ColumnChart
                 div={"pumpChart"}
                 data={pumpData}
                 xAxisName={"date"}
-                yOpenDate={"start"}
-                yCloseDate={"stop"}
+                yAxisName={"duration"}
+                
               />
             </div>
             <div className="col col-md-6">
