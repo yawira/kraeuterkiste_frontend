@@ -28,7 +28,7 @@ export default class ColumnChart extends Component {
         dateAxis.dataFields.date = "date"
         dateAxis.renderer.minGridDistance = 40;
         dateAxis.fontSize = 11;
-        dateAxis.baseInterval = {count: 1, timeUnit: "minute"};
+        dateAxis.baseInterval = {count: 10, timeUnit: "second"};
 
         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
         valueAxis.min = 0;
@@ -59,7 +59,6 @@ export default class ColumnChart extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <div id={this.props.div} style={{width: "100%", height: "500px"}}/>
         );
