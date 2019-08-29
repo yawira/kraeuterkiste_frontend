@@ -81,7 +81,7 @@ export default class Home extends Component {
       });
   };
 
-  showPhoto = () => {
+  takePhoto = () => {
     fetch("http://localhost:6060/camera/photo", { credentials: "include" })
       // response - was wir vom Server bekommen => Umwandeln in json-Format
       .then(response => response.json())
@@ -190,7 +190,7 @@ export default class Home extends Component {
               <Button
                 id="photoButton"
                 onClick={() => {
-                  this.showPhoto();
+                  this.takePhoto();
                 }}
               >
                 picture{" "}
