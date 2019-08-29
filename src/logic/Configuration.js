@@ -45,7 +45,7 @@ export default class Configuration extends Component {
       <div className={this.state.showExposure ? "exposure" : "water"}>
         <div className="container">
           <div>
-            <label>Please select an option: </label>
+            <label className="configurationLabel">Please select an option: </label>
             <Select onChange={this.handleChange} options={options} />
           </div>
           <WaterConfig show={showWater} />
