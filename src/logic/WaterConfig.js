@@ -5,15 +5,15 @@ import MyClock from "./Clock";
 export default function WaterConfig(props) {
     return (
         <div hidden={!props.show} className="container col-lg-12">
-            <p>
-                Here you can select the timeframe for <b>watering</b> your plant
+            <p className="waterText">
+                Here you can select the timeframe for <span className="waterWatering">watering</span> your plant
             </p>
             <div className={"row"} style={{marginTop: "20px"}}>
                 <div className="col-md-6">
-                    <MyClock/>
+                    <MyCalender/>
                 </div>
                 <div className="col-md-6">
-                    <MyCalender/>
+                    <MyClock/>
                 </div>
             </div>
         </div>

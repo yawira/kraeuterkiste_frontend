@@ -1,0 +1,29 @@
+.clock {
+  padding-top: 40px;
+}
+.exposure {
+  background: url("../pictures/nature-3294681_1920.jpg") no-repeat center center;
+}
+.water {
+  background: url("../pictures/rain-2573488_1920.jpg") no-repeat center center;
+}
+.exposureText{
+  color: white;
+  font-size: 20px
+}
+.exposureLighting{
+  color: yellow;
+  font-weight: bold
+}
+.waterText{
+  color: white;
+  font-size: 20px
+}
+.waterWatering{
+  color: rgb(20, 50, 184);
+  font-weight: bold
+}
+.configurationLabel{
+  color: white;
+  font-weight: bold
+}
