@@ -26,7 +26,7 @@ export default class Home extends Component {
 
     // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
     fetchPumpData = () => {
-        fetch("http://localhost:6060/dataview/pump", {credentials: "include"})
+        fetch("http://localhost:6060/pump/data", {credentials: "include"})
             .then(response => response.json())
             .then(pumpData => {
                 this.setState({
@@ -36,7 +36,7 @@ export default class Home extends Component {
     };
 
     fetchMoistureData = () => {
-        fetch("http://localhost:6060/dataview/moisture", {credentials: "include"})
+        fetch("http://localhost:6060/moisture/data", {credentials: "include"})
             .then(response => response.json())
             .then(moistureData => {
                 this.setState({
@@ -46,7 +46,7 @@ export default class Home extends Component {
     };
 
     fetchExposureData = () => {
-        fetch("http://localhost:6060/led/data", {credentials: "include"})
+        fetch("http://localhost:6060/exposure/data", {credentials: "include"})
             .then(response => response.json())
             .then(exposureData => {
                 this.setState({
@@ -56,7 +56,7 @@ export default class Home extends Component {
     }
 
     toggleLight = () => {
-        fetch("http://localhost:6060/led/toggle", {credentials: "include"})
+        fetch("http://localhost:6060/exposure/toggle", {credentials: "include"})
             .then(result => result.json())
             .then(result => {
                 if (!result.on) {
@@ -81,8 +81,8 @@ export default class Home extends Component {
             })
     }
 
-    showPhoto = () => {
-        fetch("http://localhost:6060/readImage", {credentials: "include"})
+    takePhoto = () => {
+        fetch("http://localhost:6060/camera/photo", {credentials: "include"})
         // response - was wir vom Server bekommen => Umwandeln in json-Format
             .then(response => response.json())
             // photoData = response.json() als Parameter
@@ -187,7 +187,7 @@ export default class Home extends Component {
                             <Button
                                 id="photoButton"
                                 onClick={() => {
-                                    this.showPhoto();
+                                    this.takePhoto();
                                 }}
                             >
                                 picture
