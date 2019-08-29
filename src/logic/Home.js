@@ -55,7 +55,7 @@ export default class Home extends Component {
       });
   };
 
-  toggleLight = () => {
+  toggleExposure = () => {
     fetch("http://localhost:6060/exposure/toggle", { credentials: "include" })
       .then(result => result.json())
       .then(result => {
@@ -244,7 +244,7 @@ export default class Home extends Component {
               <Button
                 id="exposureButton"
                 onClick={() => {
-                  this.toggleLight();
+                  this.toggleExposure();
                 }}
               >
                 Light is {ledOn ? "on" : "off"}
