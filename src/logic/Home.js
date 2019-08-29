@@ -21,9 +21,9 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    this.fetchPumpData();
     this.fetchMoistureData();
     this.fetchExposureData();
+    this.fetchPumpData();
   }
 
   // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
@@ -32,7 +32,7 @@ export default class Home extends Component {
       .then(response => response.json())
       .then(pumpData => {
         this.setState({
-          pumpData: pumpData.pumpList
+          pumpData: pumpData,
         });
       });
   };
@@ -42,7 +42,7 @@ export default class Home extends Component {
       .then(response => response.json())
       .then(moistureData => {
         this.setState({
-          moistureData: moistureData.moistureList
+          moistureData: moistureData,
         });
       });
   };
@@ -52,7 +52,7 @@ export default class Home extends Component {
       .then(response => response.json())
       .then(exposureData => {
         this.setState({
-          exposureData: exposureData.exposureList
+          exposureData: exposureData,
         });
       });
   };
@@ -61,11 +61,11 @@ export default class Home extends Component {
     fetch("http://localhost:6060/exposure/toggle", { credentials: "include" })
       .then(result => result.json())
       .then(result => {
-        if (!result.on) {
+        if (!result.active) {
           this.fetchExposureData();
         }
         this.setState({
-          ledOn: result.on
+          ledOn: result.active
         });
       });
   };
@@ -74,11 +74,11 @@ export default class Home extends Component {
     fetch("http://localhost:6060/pump/toggle", { credentials: "include" })
       .then(result => result.json())
       .then(result => {
-        if (!result.on) {
+        if (!result.active) {
           this.fetchPumpData();
         }
         this.setState({
-          pumpOn: result.on
+          pumpOn: result.active
         });
       });
   };
@@ -113,8 +113,8 @@ export default class Home extends Component {
     const moistureData = this.state.moistureData.map(data => {
       // map-function generates an Array and the return statement maps the data
       return {
-        dateTime: new Date(data.moistureDateTime),
-        percentage: parseInt(data.moisturePercentage)
+        dateTime: new Date(data.dateTime),
+        percentage: parseInt(data.percentage)
       };
     });
 
