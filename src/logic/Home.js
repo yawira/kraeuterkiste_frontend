@@ -40,7 +40,7 @@ export default class Home extends Component {
       .then(response => response.json())
       .then(moistureData => {
         this.setState({
-          moistureData: moistureData.moistureList,
+          moistureData: moistureData,
         });
       });
   };
@@ -110,8 +110,8 @@ export default class Home extends Component {
     const moistureData = this.state.moistureData.map(data => {
       // map-function generates an Array and the return statement maps the data
       return {
-        dateTime: new Date(data.moistureDateTime),
-        percentage: parseInt(data.moisturePercentage)
+        dateTime: new Date(data.dateTime),
+        percentage: parseInt(data.percentage)
       };
     });
 
