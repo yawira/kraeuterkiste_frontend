@@ -32,8 +32,7 @@ export default class ColumnChart extends Component {
 
         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
         valueAxis.min = 0;
-        valueAxis.max = 100;
-        valueAxis.strictMinMax = true;
+        valueAxis.strictMin = true;
         valueAxis.renderer.minGridDistance = 30;
 
 
