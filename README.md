@@ -12,7 +12,7 @@ In the project directory, you can run:
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
-##Technologies and Libraries
+## Technologies and Libraries
 
 - JavaScript
 - React 
@@ -20,7 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - Bootstrap
 
 
-##Authors
+## Authors
 
 - Ralf Jackels
 - Lorenz Josten
