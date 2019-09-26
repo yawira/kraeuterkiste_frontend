@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactLightCalendar from '@lls/react-light-calendar'
 import './calender.css'
 
-// https://reactjsexample.com/a-lightweight-calendar-for-react/
+// creates the calendar widget on configuration page
 export default class MyCalendar extends Component {
   constructor(props) {
     super(props)
@@ -14,6 +14,7 @@ export default class MyCalendar extends Component {
     }
   }
 
+  // saves the start- and endDate user input into state
   onChange = (startDate, endDate) => this.setState({ startDate, endDate })
 
   render = () => {

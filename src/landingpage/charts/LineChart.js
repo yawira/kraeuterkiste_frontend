@@ -4,6 +4,7 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated"
 import React, {Component} from 'react'
 import './charts.css'
 
+// Charts by amCharts library
 export default class LineChart extends Component {
     componentDidMount() {
         let chart = am4core.create(this.props.div, am4charts.XYChart);

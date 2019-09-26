@@ -5,12 +5,11 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated"
 import React, {Component} from 'react'
 import './charts.css'
 
-
+// Charts by amCharts library
 export default class ColumnChart extends Component {
 
     componentDidMount() {
         let chart = am4core.create(this.props.div, am4charts.XYChart);
-
 
         /* Chart code */
         // Themes begin
@@ -21,7 +20,6 @@ export default class ColumnChart extends Component {
 
         chart.data = this.props.data;
         chart.dateFormatter.inputDateFormat = "YYYY-MM-DD HH:mm:ss";
-        
 
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         //categoryAxis.renderer.grid.template.location = 0;
@@ -34,7 +32,6 @@ export default class ColumnChart extends Component {
         valueAxis.min = 0;
         valueAxis.strictMin = true;
         valueAxis.renderer.minGridDistance = 30;
-
 
         let series = chart.series.push(new am4charts.ColumnSeries());
         series.dataFields.dateX = this.props.xAxisName;

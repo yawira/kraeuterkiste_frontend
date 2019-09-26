@@ -1,9 +1,10 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { HashRouter, Route, NavLink } from "react-router-dom";
-import Configuration from "./Configuration.js";
-import Home from "./Home.js";
+import Configuration from "./configurationpage/Configuration.js";
+import Home from "./landingpage/Home.js";
 
+// HashRouter is used to ensure Single-Page-Application status
 export default function MyNavbar(props) {
   return (
     <HashRouter>

@@ -1,11 +1,13 @@
+/*Stylesheet for configuration page, except for Calendar.js*/
+
 .clock {
   padding-top: 40px;
 }
 .exposure {
-  background: url("../pictures/nature-3294681_1920.jpg") no-repeat center center;
+  background: url("pictures/nature-3294681_1920.jpg") no-repeat center center;
 }
 .water {
-  background: url("../pictures/rain-2573488_1920.jpg") no-repeat center center;
+  background: url("pictures/rain-2573488_1920.jpg") no-repeat center center;
 }
 .exposureText{
   color: white;

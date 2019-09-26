@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import "../App.css";
-import LineChart from "../charts/LineChart";
-import "../charts/charts.css";
+import LineChart from "../landingpage/charts/LineChart";
+import "../landingpage/charts/charts.css";
 import { Button } from "react-bootstrap";
-import GanttChart from "../charts/GanttChart"
-import ColumnChart from "../charts/ColumnChart"
+import GanttChart from "../landingpage/charts/GanttChart"
+import ColumnChart from "../landingpage/charts/ColumnChart"
 import Photo from "./Photo"
-import plant from "../pictures/plant.jpg"
+import plant from "./pictures/plant.jpg"
 
-
+// Landing page of the project; Home Component utilizes the Fetch API to request data from Spring-Backend
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +31,9 @@ export default class Home extends Component {
   // "credentials: include" configures js to append user-credentials into request-headers sent via fetch
   fetchPumpData = () => {
     fetch("http://localhost:6060/pump/data", { credentials: "include" })
+    // converting server response into json-Format
       .then(response => response.json())
+      // pumpData = response.json() as parameter
       .then(pumpData => {
         this.setState({
           pumpData: pumpData,
@@ -87,12 +89,10 @@ export default class Home extends Component {
 
   takePhoto = () => {
     fetch("http://localhost:6060/camera/photo", { credentials: "include" })
-      // response - was wir vom Server bekommen => Umwandeln in json-Format
       .then(response => response.json())
-      // photoData = response.json() als Parameter
       .then(photoData => {
         this.setState({
-              // data:image etc. ist die notwendige Syntax von HTML um ein Base64 kodierten String zu entpacken
+              // data:image etc. is the necessary HTML syntax to extract a Base64 encoded string
           photoData: "data:image/jpg;base64," + photoData.encodedImage
         });
       });
@@ -111,9 +111,12 @@ export default class Home extends Component {
     return [hour, minute, sec].join(":");
   };
 
+
   render() {
+    // the following const variables receive data from backend and map it to x/y-axis of charts
+
     const moistureData = this.state.moistureData.map(data => {
-      // map-function generates an Array and the return statement maps the data
+      // map-function generates an array and the return statement maps the data
       return {
         dateTime: new Date(data.dateTime),
         percentage: parseInt(data.percentage)
@@ -123,7 +126,6 @@ export default class Home extends Component {
     const pumpData = this.state.pumpData.map(data => {
       const start = new Date(data.start);
       const duration = data.duration;
-
       return {
         date: start,
         duration: duration,
@@ -134,7 +136,6 @@ export default class Home extends Component {
     const exposureData = this.state.exposureData.map(data => {
       const start = new Date(data.start);
       const stop = new Date(data.stop);
-
       return {
         date: this.toDateStr(start),
         start: this.toDateStr(start) + " " + this.toTimeStr(start),
@@ -142,12 +143,12 @@ export default class Home extends Component {
       };
     });
 
+    // TODO
     const ledOn = this.state.ledOn;
-
     const pumpOn = this.state.pumpOn;
-
     const photoData = this.state.photoData;
 
+    // rendering of all components to show on landing page
     return (
       <div className="App">
         <div className="container col-lg-12">

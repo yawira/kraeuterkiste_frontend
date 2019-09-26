@@ -3,6 +3,7 @@ import Select from "react-select";
 import WaterConfig from "./WaterConfig";
 import ExposureConfig from "./ExposureConfig";
 
+// inital dropdown-component of the configuration page
 const options = [
   { value: "water", label: "Watering Schedule" },
   { value: "exposure", label: "Periods of exposure" }
@@ -17,7 +18,7 @@ export default class Configuration extends Component {
       showWater: false
     };
   }
-
+  // handles the visibilty of Water-/ExposureConfig
   handleChange = selectedOption => {
     switch (selectedOption.value) {
       case "exposure":
@@ -48,6 +49,7 @@ export default class Configuration extends Component {
             <label className="configurationLabel">Please select an option: </label>
             <Select onChange={this.handleChange} options={options} />
           </div>
+          {/*not initially visible; hidden till action*/}
           <WaterConfig show={showWater} />
           <ExposureConfig show={showExposure} />
         </div>
